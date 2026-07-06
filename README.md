@@ -55,7 +55,7 @@ If you use this notation in your research or projects, please cite it as:
   author       = {Muhammad Nata Rizki Haynar},
   title        = {The Psi (ψ) Notation for Ordered Complexity Classes},
   year         = {2026},
-  howpublished = {\url{https://github.com/username-mu/psi-notation}}
+  howpublished = {\url{https://github.com/Natarizki/psi-notation}}
 }
 ```
 
