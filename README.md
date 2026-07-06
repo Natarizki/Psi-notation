@@ -1,9 +1,9 @@
 # The Psi (ψ) Notation for Ordered Complexity Classes
 
-[![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/username-mu/psi-notation)
-[![Version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/username-mu/psi-notation)
+[![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/Natarizki/psi-notation)
+[![Version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/Natarizki/psi-notation)
 [![Made with LaTeX](https://img.shields.io/badge/Made%20with-LaTeX-008080?logo=latex)](https://www.latex-project.org/)
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/username-mu)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/Natarizki)
 
 > **A novel asymptotic notation for guaranteeing ordering constraints in two-tier computational architectures.**
 
