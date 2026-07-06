@@ -1,42 +1,67 @@
-# The Psi (ψ) Notation - Ordered Complexity Classes
+# The Psi (ψ) Notation for Ordered Complexity Classes
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/username-mu/psi-notation)
+[![Version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/username-mu/psi-notation)
+[![Made with LaTeX](https://img.shields.io/badge/Made%20with-LaTeX-008080?logo=latex)](https://www.latex-project.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/username-mu)
 
-## 📜 Description
-This repository contains the formal definition of the **ψ (Psi) notation**, a novel notation in algorithmic complexity and system architecture analysis. 
+> **A novel asymptotic notation for guaranteeing ordering constraints in two-tier computational architectures.**
 
-Unlike classical notations (`O`, `Ω`, `Θ`) that analyze the growth of a *single* function, the **ψ** notation is specifically designed to analyze **ordered pairs of sequential functions** \((F_1, F_2)\), providing a mathematical guarantee that \(F_1\) will never asymptotically exceed \(F_2\).
+## 📜 Introduction
+Classical notations (`O`, `Ω`, `Θ`) describe the *growth rate* of a single function. However, in modern system architectures (e.g., AI pipelines, caching layers), we require a **structural guarantee** that an upstream layer ($F_1$) will never exceed a downstream layer ($F_2$).
+
+The **ψ (Psi) notation** fills this gap by providing a formal mathematical framework for *ordered asymptotic bounds*.
 
 ## 📐 Formal Definition
-A pair of functions \((F_1, F_2)\) is said to belong to the complexity class \(\psi(g(n))\) if there exist positive constants \(c_1, c_2, c_3\) such that for all sufficiently large \(n\):
+Let $F_1, F_2: \mathbb{N} \to \mathbb{R}^+$ be a pair of non-negative functions. The ordered pair $(F_1, F_2)$ belongs to the complexity class $\psi(g(n))$ if there exist positive constants $c_1, c_2, c_3$ such that for all sufficiently large $n$:
 
-\[
-c_1 \cdot g(n) \le F_1(n) \le c_2 \cdot g(n) \le F_2(n) \le c_3 \cdot g(n)
-\]
+$$
+c_1 \cdot g(n) \;\le\; F_1(n) \;\le\; c_2 \cdot g(n) \;\le\; F_2(n) \;\le\; c_3 \cdot g(n)
+$$
 
-## 🧩 Supported Special Cases
-| Notation | Complexity | Ideal Application |
+The core idea is the **"Bridge Inequality"** at $c_2 \cdot g(n)$, ensuring that $F_1$ is strictly bounded above by $F_2$.
+
+## 🧩 Complexity Classes
+| Notation | Growth Rate | Ideal Application |
 | :--- | :--- | :--- |
-| \(\psi(1)\) | Constant | Real-time systems with absolute latency guarantees |
-| \(\psi(\log N)\) | Logarithmic | Binary Search & Divide-and-Conquer algorithms |
-| \(\psi(N)\) | Linear | Simple data pipelines |
-| \(\psi(N \log N)\) | Log-Linear | Sorting & Merge operations |
-| \(\psi(N^2)\) | Quadratic | Nested-loop algorithms (e.g., certain AI models) |
+| $\psi(1)$ | Constant | Real-time systems with absolute latency guarantees |
+| $\psi(\log N)$ | Logarithmic | Binary Search & Divide-and-Conquer algorithms |
+| $\psi(N)$ | Linear | Simple data streaming and ETL pipelines |
+| $\psi(N \log N)$ | Log-Linear | Sorting algorithms (Merge Sort, Quick Sort) |
+| $\psi(N^2)$ | Quadratic | Nested-loop algorithms and certain DP approaches |
 
 ## 🎯 Motivation
-This notation was born out of the need to guarantee load balancing in **two-tier architectures**, such as *cache-to-database* systems or *retriever-to-generative* models (RAG). Formally, \(\psi\) ensures that the **upstream** layer (front-end) will never overload the **downstream** layer (back-end).
+This notation was designed to solve a practical problem in **two-tier systems** like *Retrieval-Augmented Generation (RAG)* or *Microservices*:
 
-## 📂 Repository Contents
-- **`ψ.pdf`** : Formal paper defining the Psi notation (2 pages).
-- **`ψ.md`** : Concise definition notes in Markdown format.
-- **`README.md`** : This landing page.
+> *"How do we mathematically guarantee that the retriever (F₁) doesn't flood the generator (F₂) with more requests than it can handle?"*
 
-## 👤 Author
-**Muhammad Nata Rizki Haynar**  
-[Github Profile](https://github.com/Natarizki)
+$\psi$ provides a rigorous proof that $F_1 \le F_2$ asymptotically, preventing system overload without relying on heuristic thresholds.
 
-## 📄 License
-This work is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). You are free to share and adapt it for research purposes, provided you give appropriate credit to the original author.
+## 📂 Repository Structure
+```
 
----
-*"Bridging complexity analysis with real-world system architecture."*
+.
+├── ψ.pdf              # Formal paper defining the Psi notation (2 pages)
+├── ψ.md               # Quick reference guide
+└── README.md          # This landing page
+
+```
+
+## 📝 Citation
+If you use this notation in your research or projects, please cite it as:
+
+```bibtex
+@misc{haynar2026psi,
+  author       = {Muhammad Nata Rizki Haynar},
+  title        = {The Psi (ψ) Notation for Ordered Complexity Classes},
+  year         = {2026},
+  howpublished = {\url{https://github.com/username-mu/psi-notation}}
+}
+```
+
+👤 Author
+
+Muhammad Nata Rizki Haynar
+[![github profile](https://img.shields.io/badge/GitHub-Profile-black?logo=githu)](https://github.com/Natarizki)
+
+"Bridging complexity analysis with real-world system architecture."
