@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ψ (Psi) Notation · Ordered Complexity Classes</title>
 
-    <!-- MathJax: biar rumus matematika tampil cantik -->
+    <!-- MathJax -->
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
 
     <style>
+        /* === CSS Variables (Dark Mode siap) === */
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #0b1120;
+            --text-secondary: #1e293b;
+            --text-muted: #475569;
+            --border: #e9edf4;
+            --border-table: #e2e8f0;
+            --card-bg: #f1f5f9;
+            --card-border: #e2e8f0;
+            --badge-bg: #eef2f6;
+            --badge-blue: #dbeafe;
+            --badge-blue-text: #1e4f8a;
+            --badge-green: #dcfce7;
+            --badge-green-text: #166534;
+            --shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.10);
+            --download-bg: linear-gradient(135deg, #eff6ff, #f8fafc);
+            --download-border: dashed #93bbfc;
+            --btn-bg: #0b1120;
+            --btn-text: #ffffff;
+            --btn-hover: #1e293b;
+            --blockquote-border: #3b82f6;
+            --link: #2563eb;
+            --table-header: #f1f5f9;
+            --table-hover: #fafbfc;
+        }
+
+        body.dark {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f1f5f9;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --border-table: #334155;
+            --card-bg: #334155;
+            --card-border: #475569;
+            --badge-bg: #475569;
+            --badge-blue: #1e3a5f;
+            --badge-blue-text: #93bbfc;
+            --badge-green: #1a3a2a;
+            --badge-green-text: #86efac;
+            --shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.6);
+            --download-bg: linear-gradient(135deg, #1e293b, #0f172a);
+            --download-border: dashed #3b82f6;
+            --btn-bg: #f1f5f9;
+            --btn-text: #0f172a;
+            --btn-hover: #e2e8f0;
+            --blockquote-border: #60a5fa;
+            --link: #60a5fa;
+            --table-header: #334155;
+            --table-hover: #2d3a4f;
+        }
+
         /* === Reset & Base === */
         * {
             margin: 0;
@@ -19,49 +74,79 @@
 
         body {
             font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #f8fafc;
-            color: #0b1120;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             padding: 2rem 1rem;
             display: flex;
             justify-content: center;
+            transition: background 0.3s, color 0.3s;
         }
 
         .container {
             max-width: 880px;
             width: 100%;
-            background: white;
+            background: var(--surface);
             border-radius: 24px;
             padding: 2.5rem 2rem;
-            box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.10);
-            border: 1px solid #e9edf4;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: background 0.3s, border 0.3s, box-shadow 0.3s;
         }
 
-        /* === Header === */
+        /* === Header dengan Animasi Psi === */
         .header {
             border-bottom: 3px solid #3b82f6;
             padding-bottom: 1.5rem;
             margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .psi-symbol {
-            font-size: 3rem;
+        .header-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== LOGO Ψ BERPUTAR ===== */
+        .psi-logo {
+            display: inline-block;
+            font-size: 3.2rem;
             font-weight: 300;
-            color: #1e293b;
+            color: #3b82f6;
             line-height: 1;
+            animation: spinPsi 8s linear infinite;
+            transform-origin: center;
+            transition: color 0.3s;
+        }
+
+        @keyframes spinPsi {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Hover: berhenti berputar biar gak pusing kalau diarahin */
+        .psi-logo:hover {
+            animation-play-state: paused;
         }
 
         h1 {
             font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            color: #0b1120;
+            color: var(--text);
             margin-top: 0.2rem;
         }
 
         .subtitle {
             font-size: 1.1rem;
-            color: #475569;
+            color: var(--text-muted);
             margin-top: 0.25rem;
             font-weight: 400;
         }
@@ -69,11 +154,10 @@
         .author {
             margin-top: 0.75rem;
             font-weight: 500;
-            color: #1e293b;
+            color: var(--text-secondary);
         }
-
         .author a {
-            color: #2563eb;
+            color: var(--link);
             text-decoration: none;
         }
         .author a:hover {
@@ -88,23 +172,49 @@
         }
 
         .badge {
-            background: #eef2f6;
+            background: var(--badge-bg);
             padding: 0.2rem 0.8rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
-            color: #1e293b;
+            color: var(--text-secondary);
             display: inline-block;
+            transition: background 0.3s, color 0.3s;
         }
 
         .badge.blue {
-            background: #dbeafe;
-            color: #1e4f8a;
+            background: var(--badge-blue);
+            color: var(--badge-blue-text);
         }
 
         .badge.green {
-            background: #dcfce7;
-            color: #166534;
+            background: var(--badge-green);
+            color: var(--badge-green-text);
+        }
+
+        /* === Dark Mode Toggle === */
+        .theme-toggle {
+            background: var(--badge-bg);
+            border: 1px solid var(--border);
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: background 0.3s, color 0.3s, border 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            user-select: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--border);
+        }
+
+        .theme-toggle span {
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         /* === Typography === */
@@ -112,37 +222,36 @@
             font-size: 1.6rem;
             font-weight: 600;
             margin: 2rem 0 1rem 0;
-            color: #0b1120;
+            color: var(--text);
             border-left: 5px solid #3b82f6;
             padding-left: 1rem;
+            transition: color 0.3s;
         }
 
         h3 {
             font-size: 1.25rem;
             font-weight: 600;
             margin: 1.5rem 0 0.75rem 0;
-            color: #1e293b;
+            color: var(--text-secondary);
         }
 
         p {
             margin-bottom: 1rem;
-            color: #1e293b;
+            color: var(--text-secondary);
+            transition: color 0.3s;
         }
 
-        /* === Math / Definition Box === */
+        /* === Definition Box === */
         .definition-box {
-            background: #f1f5f9;
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 1.5rem;
             margin: 1.5rem 0;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--card-border);
             text-align: center;
             font-size: 1.1rem;
             overflow-x: auto;
-        }
-
-        .definition-box .math {
-            font-size: 1.2rem;
+            transition: background 0.3s, border 0.3s;
         }
 
         /* === Table === */
@@ -150,7 +259,8 @@
             overflow-x: auto;
             margin: 1.5rem 0;
             border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-table);
+            transition: border 0.3s;
         }
 
         table {
@@ -160,46 +270,59 @@
         }
 
         th {
-            background: #f1f5f9;
+            background: var(--table-header);
             text-align: left;
             padding: 0.75rem 1rem;
             font-weight: 600;
-            color: #0b1120;
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
         }
 
         td {
             padding: 0.75rem 1rem;
-            border-top: 1px solid #e9edf4;
+            border-top: 1px solid var(--border-table);
+            color: var(--text-secondary);
+            transition: border 0.3s, color 0.3s;
         }
 
         tr:hover {
-            background: #fafbfc;
+            background: var(--table-hover);
         }
 
         .code {
             font-family: 'Courier New', monospace;
-            background: #f1f5f9;
+            background: var(--card-bg);
             padding: 0.1rem 0.4rem;
             border-radius: 6px;
             font-size: 0.9rem;
+            transition: background 0.3s;
         }
 
-        /* === Download Button === */
+        blockquote {
+            border-left: 4px solid var(--blockquote-border);
+            padding-left: 1.2rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            transition: border 0.3s, color 0.3s;
+        }
+
+        /* === Download Section === */
         .download-section {
-            background: linear-gradient(135deg, #eff6ff, #f8fafc);
+            background: var(--download-bg);
             border-radius: 20px;
             padding: 2rem 1.5rem;
             text-align: center;
             margin: 2.5rem 0 1.5rem 0;
-            border: 1px dashed #93bbfc;
+            border: 1px dashed var(--download-border);
+            transition: background 0.3s, border 0.3s;
         }
 
         .download-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            background: #0b1120;
-            color: white;
+            background: var(--btn-bg);
+            color: var(--btn-text);
             font-weight: 600;
             font-size: 1.1rem;
             padding: 0.9rem 2.4rem;
@@ -211,7 +334,7 @@
         }
 
         .download-btn:hover {
-            background: #1e293b;
+            background: var(--btn-hover);
             transform: scale(1.02);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
@@ -226,19 +349,38 @@
         .footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid var(--border);
             text-align: center;
             font-size: 0.9rem;
-            color: #64748b;
+            color: var(--text-muted);
+            transition: border 0.3s, color 0.3s;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem 1.5rem;
         }
 
         .footer a {
-            color: #2563eb;
+            color: var(--link);
             text-decoration: none;
             font-weight: 500;
         }
         .footer a:hover {
             text-decoration: underline;
+        }
+
+        /* === Visitor Counter === */
+        .visitor-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .visitor-badge strong {
+            color: var(--text);
+            font-size: 1.1rem;
         }
 
         /* === Mobile === */
@@ -259,31 +401,52 @@
                 font-size: 1rem;
                 padding: 0.8rem 1.5rem;
             }
-            .psi-symbol {
-                font-size: 2.2rem;
+            .psi-logo {
+                font-size: 2.4rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .theme-toggle {
+                align-self: flex-start;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
     </style>
 </head>
 
 <body>
+
     <div class="container">
 
         <!-- === HEADER === -->
         <div class="header">
-            <div class="psi-symbol">Ψ</div>
-            <h1>The Psi Notation<br>for Ordered Complexity Classes</h1>
-            <div class="subtitle">A formal framework for two-tier asymptotic ordering</div>
-            <div class="author">
-                <strong>Muhammad Nata Rizki Haynar</strong> &middot;
-                <a href="https://github.com/Natarizki" target="_blank">@Natarizki</a>
+            <div class="header-left">
+                <div class="psi-logo">Ψ</div>
+                <h1>The Psi Notation<br>for Ordered Complexity Classes</h1>
+                <div class="subtitle">A formal framework for two-tier asymptotic ordering</div>
+                <div class="author">
+                    <strong>Muhammad Nata Rizki Haynar</strong> &middot;
+                    <a href="https://github.com/Natarizki" target="_blank">@Natarizki</a>
+                </div>
+                <div class="badge-group">
+                    <span class="badge blue">v1.0</span>
+                    <span class="badge green">Active</span>
+                    <span class="badge">Made with LaTeX</span>
+                    <span class="badge">Open Source</span>
+                </div>
             </div>
-            <div class="badge-group">
-                <span class="badge blue">v1.0</span>
-                <span class="badge green">Active</span>
-                <span class="badge">Made with LaTeX</span>
-                <span class="badge">Open Source</span>
-            </div>
+
+            <!-- Tombol Dark Mode -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span id="themeIcon">🌙</span>
+                <span id="themeLabel">Dark</span>
+            </button>
         </div>
 
         <!-- === ABSTRACT === -->
@@ -365,7 +528,7 @@
         <p>
             This notation was born from a concrete engineering problem in two-tier architectures:
         </p>
-        <blockquote style="border-left: 4px solid #3b82f6; padding-left: 1.2rem; margin: 1rem 0; color: #334155;">
+        <blockquote>
             <em>"How do we mathematically guarantee that the retriever (F₁) doesn't flood the generator (F₂) with more requests than it can handle?"</em>
         </blockquote>
         <p>
@@ -376,13 +539,11 @@
         <!-- === DOWNLOAD SECTION === -->
         <div class="download-section">
             <h3 style="margin-top: 0; border-left: none; padding-left: 0;">📄 Full Formal Paper</h3>
-            <p style="color: #475569; margin-bottom: 1.5rem;">
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
                 Download the complete 2-page PDF defining the \(\psi\) notation.
             </p>
 
-            <!-- Tombol Download -->
             <a href="psi.pdf" class="download-btn" download>
-                <!-- SVG icon download -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
                     <path d="M12 15l-4-4h2.5V8h3v3H16l-4 4z"/>
@@ -391,8 +552,8 @@
                 Download ψ.pdf (Formal Paper)
             </a>
 
-            <p style="font-size: 0.85rem; color: #64748b; margin-top: 1rem;">
-                📌 Pastikan file <strong>psi.pdf</strong> sudah ada di folder yang sama dengan file ini.
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
+                📌 Pastikan file <strong>psi.pdf</strong> sudah ada di folder yang sama.
             </p>
         </div>
 
@@ -402,18 +563,77 @@
             Source code, raw LaTeX definitions, and this website are available on GitHub:
         </p>
         <p style="text-align: center; font-size: 1.1rem; margin: 1rem 0;">
-            <a href="https://github.com/Natarizki/psi-notation" target="_blank" style="font-weight: 600; color: #2563eb; text-decoration: none; border-bottom: 2px solid #bfdbfe;">
+            <a href="https://github.com/Natarizki/psi-notation" target="_blank" style="font-weight: 600; color: var(--link); text-decoration: none; border-bottom: 2px solid var(--border);">
                 github.com/Natarizki/psi-notation
             </a>
         </p>
 
-        <!-- === FOOTER === -->
+        <!-- === FOOTER + COUNTER === -->
         <div class="footer">
-            &copy; 2026 Muhammad Nata Rizki Haynar &middot;
-            <a href="https://github.com/Natarizki/psi-notation" target="_blank">GitHub</a> &middot;
-            Built with ❤️ using HTML &amp; MathJax
+            <span>&copy; 2026 Muhammad Nata Rizki Haynar</span>
+            <span>·</span>
+            <a href="https://github.com/Natarizki/psi-notation" target="_blank">GitHub</a>
+            <span>·</span>
+            <span>Built with ❤️</span>
+            <span>·</span>
+
+            <!-- VISITOR COUNTER (global, pakai countapi.xyz) -->
+            <span class="visitor-badge">
+                👁️ Visitors <strong id="visitorCount">...</strong>
+            </span>
         </div>
 
     </div>
+
+     <!-- ============================================================ -->
+    <!-- JAVASCRIPT: Dark Mode + Visitor Counter                       -->
+    <!-- ============================================================ -->
+    <script>
+        // ========== 1. DARK MODE ==========
+        const toggle = document.getElementById('themeToggle');
+        const icon = document.getElementById('themeIcon');
+        const label = document.getElementById('themeLabel');
+
+        // Cek preferensi sistem atau localStorage
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const stored = localStorage.getItem('psi-theme');
+
+        let darkMode = stored === 'dark' || (stored === null && prefersDark);
+
+        function applyTheme(dark) {
+            document.body.classList.toggle('dark', dark);
+            icon.textContent = dark ? '☀️' : '🌙';
+            label.textContent = dark ? 'Light' : 'Dark';
+            localStorage.setItem('psi-theme', dark ? 'dark' : 'light');
+        }
+
+        applyTheme(darkMode);
+
+        toggle.addEventListener('click', () => {
+            darkMode = !darkMode;
+            applyTheme(darkMode);
+        });
+
+        // ========== 2. VISITOR COUNTER ==========
+        // Pakai countapi.xyz (gratis, global)
+        const counterKey = 'psi-notation.vercel.app.visitors';
+
+        async function updateCounter() {
+            const countEl = document.getElementById('visitorCount');
+            try {
+                // GET lalu POST untuk increment
+                const res = await fetch(`https://api.countapi.xyz/hit/${counterKey}`);
+                if (!res.ok) throw new Error('Counter API error');
+                const data = await res.json();
+                countEl.textContent = data.value;
+            } catch (e) {
+                // Fallback: kalau API gagal, tampilkan "–"
+                countEl.textContent = '–';
+                console.warn('Visitor counter offline:', e);
+            }
+        }
+
+        updateCounter();
+    </script>
 </body>
 </html>
