@@ -1,6 +1,5 @@
 # The Psi (ψ) Notation - Ordered Complexity Classes
 
-[![DOI](https://img.shields.io/badge/DOI-10.13140%2FRG.2.2.12345.67890-blue)](https://doi.org/10.13140/RG.2.2.12345.67890) *(Replace with actual DOI link, or remove this badge)*
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 ## 📜 Description
