@@ -1,3 +1,5 @@
+Docs: [Docs](ψ.pdf)
+
 # The Psi (ψ) Notation for Ordered Complexity Classes
 
 [![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/Natarizki/psi-notation)
