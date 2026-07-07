@@ -37,6 +37,10 @@ This notation was designed to solve a practical problem in **two-tier systems** 
 
 $\psi$ provides a rigorous proof that $F_1 \le F_2$ asymptotically, preventing system overload without relying on heuristic thresholds.
 
+## benchmarks
+
+if you wanna see the benchmarks, see at ![benchmarks](benchmarks.svg)
+
 ## 📂 Repository Structure
 ```
 
